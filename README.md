@@ -11,8 +11,7 @@ boot "/dev/sda /dev/sdb" and root "/dev/sdc /dev/sdd"
 
 
 
--
-
+---
 
 
  [full preseed](full_preseed) config with comments i got this from user  [ Andrey Klimentyev ](https://github.com/zuzzas?tab=repositories)
@@ -20,7 +19,7 @@ here is his  [github gist](https://gist.github.com/zuzzas/a1695344162ac7fa124e15
 
 
 
--
+---
 
 
 Much of this should also work with ubuntu server legacy server installer. 
