@@ -24,6 +24,7 @@ here is his  [github gist](https://gist.github.com/zuzzas/a1695344162ac7fa124e15
 Much of this should also work with ubuntu server legacy server installer. 
 
 <br />
+links:
 
 http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/
 
