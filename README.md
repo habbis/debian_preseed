@@ -16,8 +16,10 @@ boot "/dev/sda /dev/sdb" and root "/dev/sdc /dev/sdd"
 here is his  [github gist](https://gist.github.com/zuzzas/a1695344162ac7fa124e15855ce0768f)
 
 
+Much of this should also work with ubuntu server legacy server installer. 
 
 
+http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/
 
-
+https://help.ubuntu.com/lts/installation-guide/s390x/apb.html
 
