@@ -4,6 +4,7 @@ debian preseed auto installer files
 
 preseed file for VM or other server/desktop using /dev/sda [preseed-bookworm-min-vm](preseed-bookworm-min-vm.txt)
 
+tested with pxe booting on proxmox
 
 
 
