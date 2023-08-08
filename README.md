@@ -1,17 +1,31 @@
 # debian_preseed
 debian preseed auto installer files
 
+preseed file for vmware VM  [preseed-bookworm-min-vm-vmware](preseed-bookworm-min-vm-vmware.txt)
 
-preseed file for VM or other server/desktop using /dev/sda [preseed-bookworm-min-vm](preseed-bookworm-min-vm.txt)
+package for vmware is open-vm-tools
+
+
+
+preseed file for proxmox VM  using /dev/sda [preseed-bookworm-min-vm-proxmox](preseed-bookworm-min-vm-proxmox.txt)
 
 tested with pxe booting on proxmox
+
+package for promox is cloud-init qemu-guest-agent
+
+
+preseed file for libvirt VM using /dev/vda [preseed-bookworm-min-vm-libvirt](preseed-bookworm-min-vm-libvirt.txt)
+
+tested with pxe booting on proxmox
+
+package for libvirt is cloud-init qemu-guest-agent
 
 
 
  Mdadm raid setup [raid1 preseed](raid1_preseed)
  and root and boot have two disks in raid1
 
-boot "/dev/sda /dev/sdb" and root "/dev/sdc /dev/sdd" 
+boot "/dev/sda /dev/sdb" and root "/dev/sdc /dev/sdd"
 
 
 
