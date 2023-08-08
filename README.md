@@ -2,6 +2,10 @@
 debian preseed auto installer files
 
 
+preseed file for VM or other server/desktop using /dev/sda [preseed-bookworm-min-vm](preseed-bookworm-min-vm.txt)
+
+
+
 
  Mdadm raid setup [raid1 preseed](raid1_preseed)
  and root and boot have two disks in raid1
