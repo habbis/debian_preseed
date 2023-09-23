@@ -30,14 +30,14 @@ d-i passwd/root-login boolean false
 #d-i passwd/username string ansible
 #d-i user-setup/encrypt-home boolean false
 # Encrypted root and user passwords
-#d-i passwd/root-password-crypted password 
+#d-i passwd/root-password-crypted password $6$9KreWbtWrMuQ$WPQKmT3wVk7KouS0Rdx0kR.Fda82LEjJgoGDFiaAr5/xTv8JtaQtgHffmsJLr6/HacaCNi/8Orh5OW3YRvAjd/
 
 
 # To create a normal user account.
 d-i passwd/user-fullname string ansible
 d-i passwd/username string ansible
 # or encrypted using a crypt(3) hash.
-d-i passwd/user-password-crypted password $y$j9T$P5m.ixrG/yPu7zC4yur5R/$QGLkj3uoH9yqkhwGwIiLcTFdmz62TRkytaFu4vzaRL5
+d-i passwd/user-password-crypted password $y$j9T$SaF3P3TNIRYeJQro7eJOq0$UByDCkekNn0hfk8pHG6kgGKZRqixJVEfrT.UiWQU3e6
 
 ### Clock and time zone setup
 # Controls whether or not the hardware clock is set to UTC.
@@ -52,7 +52,7 @@ d-i time/zone string Europe/Oslo
 # Controls whether to use NTP to set the clock during the install
 d-i clock-setup/ntp boolean true
 # NTP server to use. The default is almost always fine here.
-#d-i clock-setup/ntp-server string ntp3.no.habbfarm.net
+d-i clock-setup/ntp-server string ntp3.no.habbfarm.net
 
 
 ### Partitioning
@@ -169,6 +169,7 @@ d-i pkgsel/update-policy select unattended-upgrades
 # Individual additional packages to install
 # - qemu-guest-agent for Packer and Proxmox; haveged random generator speeds up boot
 d-i pkgsel/include string openssh-server sudo qemu-guest-agent cloud-init python3 python3-apt vim
+#d-i pkgsel/include string openssh-server sudo haveged python-apt vim
 d-i pkgsel/install-language-support boolean false
 # Do not report back on what software is installed, and what software is used
 popularity-contest popularity-contest/participate boolean false
@@ -186,6 +187,16 @@ d-i grub-installer/with_other_os boolean true
 
 d-i grub-installer/bootdev string /dev/sda
 
+### Run custom commands during the installation
+
+d-i preseed/late_command string \
+  echo 'ansible ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/00_ansible; \
+  chmod 0440 /target/etc/sudoers.d/00_ansible; \
+  mkdir -p -m 700 /home/ansible/.ssh; \
+  echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4WRrdsLVlqh/Fq6eFJHhLKLrAFwksD/XcszMPcQXlB dam@automation' > /home/ansible/.ssh/authorized_keys; \
+  echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINjYH5jmAWqYBdMj11FMuXu8CVlaUJgKoJu4982kYmtx ebbestad@devkey' >> /home/ansible/.ssh/authorized_keys; \
+  chown --recursive ansible:ansible /home/ansible/.ssh; \
+  chmod 0644 /home/ansible/.ssh/authorized_keys
 
 # Avoid that last message about the install being complete.
 d-i finish-install/reboot_in_progress note
